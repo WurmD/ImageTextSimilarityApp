@@ -56,6 +56,13 @@ def setup_postprocessor(CONFIG):
 
 
 def preprocessing(image, device, CONFIG):
+    if is_black_and_white(image):
+        imgRGB = np.zeros((image.shape[0], image.shape[1], 3))
+        imgRGB[:,:,0] = image
+        imgRGB[:,:,1] = image
+        imgRGB[:,:, 2] = image
+        image = imgRGB
+
     # Resize
     scale = CONFIG.IMAGE.SIZE.TEST / max(image.shape[:2])
     image = cv2.resize(image, dsize=None, fx=scale, fy=scale)
@@ -77,6 +84,10 @@ def preprocessing(image, device, CONFIG):
 
     return image, raw_image
 
+def is_black_and_white(image):
+    if len(image.shape) == 2:
+        return True
+    return False
 
 def inference(model, image, raw_image=None, postprocessor=None):
     _, _, H, W = image.shape

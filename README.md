@@ -1,1 +1,5 @@
 # ImageTextSimilarityApp
+
+## Requirements
+
+-- Dockerfile

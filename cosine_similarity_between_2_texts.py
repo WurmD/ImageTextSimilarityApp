@@ -28,8 +28,8 @@ def cosine_sim(text1, text2):
     # requires    python -m spacy download en_core_web_lg   for slightly better similarity values,
     # or simply   python -m spacy download en   for smaller instalation download (12MB vs 791MB)
     nlp = spacy.load('en')
-    doc1 = nlp(text1)
-    doc2 = nlp(text2)
+    doc1 = nlp(text1.lower())
+    doc2 = nlp(text2.lower())
     similarity = doc1.similarity(doc2)
     # print('Spacy metric:', similarity)
     return similarity

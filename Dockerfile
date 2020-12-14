@@ -12,4 +12,5 @@ RUN wget 'https://www.dropbox.com/s/icpi6hqkendxk0m/deeplabv2_resnet101_msc-coco
 
 WORKDIR /ImageTextSimilarityApp
 
-CMD gunicorn image_similarity_app
+# --gpus=all requires docker run (docker start does not support it), ergo, can't use CMD
+# CMD gunicorn image_similarity_app
